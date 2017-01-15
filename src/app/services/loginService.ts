@@ -1,8 +1,8 @@
-import {Injectable} from "@angular/core";
+import { Injectable} from "@angular/core";
 import { Router, NavigationExtras } from '@angular/router';
-import {MyHttpService, getCookie} from "./myHttpService";
-import {Headers, RequestOptions, Response} from "@angular/http";
-import {Subject} from "rxjs";
+import { MyHttpService, getCookie } from "./myHttpService";
+import { Headers, RequestOptions } from "@angular/http";
+import { Subject } from "rxjs";
 import { Observable } from "rxjs/Observable";
 
 @Injectable()

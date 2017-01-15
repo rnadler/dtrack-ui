@@ -1,6 +1,6 @@
 import { Component, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
-import { LogAlert } from '../../components/logAlert/logAlert';
+import { LogAlert } from '../logAlert/logAlert';
 import { Subscription } from "rxjs";
 import { LoginService } from '../../services/loginService';
 import { AppState } from '../../app.service'

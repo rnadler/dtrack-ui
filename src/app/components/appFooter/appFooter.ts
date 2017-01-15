@@ -1,4 +1,4 @@
-import { Component, Inject } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
     selector: 'app-footer',
@@ -6,7 +6,6 @@ import { Component, Inject } from '@angular/core';
 })
 
 export class AppFooter {
+    // ToDo: Get version from the Maven build.
     public dtrackVersion = "0.0.1-Alpha";
-    // constructor(@Inject('VERSION') public dtrackVersion) {
-    // }
 }

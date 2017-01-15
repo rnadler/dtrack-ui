@@ -9,7 +9,7 @@ import { ChartModule } from 'angular2-highcharts';
 
 import { AppComponent } from './app.component';
 import { ROUTES } from './app.routes';
-import { AppState, InteralStateType } from './app.service';
+import { AppState } from './app.service';
 import { AppFooter } from './components/appFooter/appFooter';
 import { LogAlert } from './components/logAlert/logAlert';
 import { NotificationAlert } from './components/notificationAlert/notificationAlert';
@@ -42,12 +42,6 @@ const APP_PROVIDERS = [
   STOMPService
 ];
 
-type StoreType = {
-  state: InteralStateType,
-  restoreInputValues: () => void,
-  disposeOldHosts: () => void
-};
-
 @NgModule({
   declarations: [
     AppComponent,
@@ -63,7 +57,7 @@ type StoreType = {
     AddEntry,
     UpdateComponent
   ],
-  imports: [ // import Angular's modules
+  imports: [
     BrowserModule,
     FormsModule,
     HttpModule,
@@ -72,7 +66,7 @@ type StoreType = {
     NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
-  providers: [ // expose our Services and Providers into Angular's dependency injection
+  providers: [
     APP_PROVIDERS
   ],
   bootstrap: [AppComponent]
