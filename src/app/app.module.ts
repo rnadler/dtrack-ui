@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 import { RouterModule } from '@angular/router';
-import { AlertModule } from 'ng2-bootstrap/ng2-bootstrap';
+import { AlertModule } from 'ng2-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartModule } from 'angular2-highcharts';
 
@@ -67,7 +67,7 @@ type StoreType = {
     BrowserModule,
     FormsModule,
     HttpModule,
-    AlertModule,
+    AlertModule.forRoot(),
     ChartModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true })
