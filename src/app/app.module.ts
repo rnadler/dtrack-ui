@@ -15,7 +15,7 @@ import { LogAlert } from './components/logAlert/logAlert';
 import { NotificationAlert } from './components/notificationAlert/notificationAlert';
 import { Register } from "./components/register/register";
 import { Login } from './components/login/login';
-import { PasswordStrengthBarComponent } from 'ng2-password-strength-bar';
+import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { ShowAlertService } from './services/showAlertService';
 import { MyHttpService } from './services/myHttpService';
 import { LoginService } from './services/loginService';
@@ -50,7 +50,6 @@ const APP_PROVIDERS = [
     NotificationAlert,
     Register,
     Login,
-    PasswordStrengthBarComponent,
     MainComponent,
     DataComponent,
     Logout,
@@ -63,6 +62,7 @@ const APP_PROVIDERS = [
     HttpModule,
     AlertModule.forRoot(),
     ChartModule,
+    PasswordStrengthBarModule,
     NgbModule.forRoot(),
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
