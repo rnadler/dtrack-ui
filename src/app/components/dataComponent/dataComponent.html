@@ -25,22 +25,22 @@
     </div>
     <ngb-tabset>
         <ngb-tab>
-            <template ngbTabTitle id="chart">
+            <ng-template ngbTabTitle id="chart">
                 <strong>Chart</strong>
-            </template>
-            <template ngbTabContent>
+            </ng-template>
+            <ng-template ngbTabContent>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <chart [options]="chartOptions"  (load)="saveInstance($event.context)"></chart>
                     </div>
                 </div>
-            </template>
+            </ng-template>
         </ngb-tab>
         <ngb-tab>
-            <template ngbTabTitle id="table">
+            <ng-template ngbTabTitle id="table">
                 <strong>Table</strong>
-            </template>
-            <template ngbTabContent>
+            </ng-template>
+            <ng-template ngbTabContent>
                 <div class="panel panel-default">
                     <div class="panel-body">
                         <table class="table table-bordered">
@@ -55,7 +55,7 @@
                         </table>
                     </div>
                 </div>
-            </template>
+            </ng-template>
         </ngb-tab>
     </ngb-tabset>
 </div>

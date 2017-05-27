@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 import { AlertModule } from 'ng2-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartModule } from 'angular2-highcharts';
+import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
 
 import { AppComponent } from './app.component';
 import { ROUTES } from './app.routes';
@@ -42,6 +43,11 @@ const APP_PROVIDERS = [
   STOMPService
 ];
 
+declare var require: any;
+export function highchartsFactory() {
+  return require('highcharts');
+}
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -67,7 +73,11 @@ const APP_PROVIDERS = [
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
   providers: [
-    APP_PROVIDERS
+    APP_PROVIDERS,
+    {
+      provide: HighchartsStatic,
+      useFactory: highchartsFactory
+    }
   ],
   bootstrap: [AppComponent]
 })
