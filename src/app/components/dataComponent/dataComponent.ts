@@ -4,7 +4,12 @@ import { LogAlert } from "../logAlert/logAlert";
 
 @Component({
     selector: 'data',
-    templateUrl: './dataComponent.html'
+    templateUrl: './dataComponent.html',
+    styles: [`
+        chart {
+            display: block;
+        }
+    `],
 })
 export class DataComponent {
     public data: any;
