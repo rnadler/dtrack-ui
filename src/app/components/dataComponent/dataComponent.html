@@ -2,25 +2,26 @@
     <log-alert #LogAlert></log-alert>
     <div class="panel-body">
         <div class="col-md-4 pull-right">
-            <!--<form role="form">-->
-                <!--<div class="form-group">-->
-                    <!--<div class="input-group">-->
-                        <!--<input type="text" class="form-control" ng-model="searchTerm" placeholder="Search..."-->
-                               <!--ng-keyup="checkKeyUp($event)"/>-->
-                        <!--<span class="input-group-btn">-->
-                                <!--<button class="btn btn-default" type="button" ng-click="clearSearchTerm()"-->
-                                        <!--ng-disabled="searchTerm.length === 0" id="removeButton">-->
-                                    <!--<span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>-->
-                                <!--</button>-->
-                            <!--</span>-->
-                        <!--<span class="input-group-btn">-->
-                                <!--<button class="btn btn-default" type="button" ng-click="ok()" ng-disabled="searchTerm === currentSearchTerm" id="searchButton">-->
-                                    <!--<span class="glyphicon glyphicon-search" aria-hidden="true"></span>-->
-                                <!--</button>-->
-                            <!--</span>-->
-                    <!--</div>-->
-                <!--</div>-->
-            <!--</form>-->
+            <form role="form" name="form">
+                <div class="form-group">
+                    <div class="input-group">
+                        <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search..."
+                               name="searchTerm">
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" (click)="clearSearchTerm()"
+                                        [disabled]="searchTerm.length === 0" id="removeButton" name="removeButton">
+                                    <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
+                                </button>
+                            </span>
+                        <span class="input-group-btn">
+                                <button class="btn btn-default" type="button" (click)="ok()"
+                                        [disabled]="searchTerm === currentSearchTerm" id="searchButton" name="searchButton">
+                                    <span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+                                </button>
+                        </span>
+                    </div>
+                </div>
+            </form>
         </div>
     </div>
     <ngb-tabset>

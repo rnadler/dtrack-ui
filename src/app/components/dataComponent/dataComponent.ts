@@ -15,6 +15,8 @@ export class DataComponent {
     public data: any;
     public chartOptions: any;
     private chart: any;
+    public searchTerm: string = '';
+    public currentSearchTerm: string = '';
     constructor(private dataService: DataService) {
         this.chartOptions = {
             chart: {
@@ -34,9 +36,15 @@ export class DataComponent {
     private ngOnInit() {
         this.getData();
     }
-
+    clearSearchTerm() {
+        this.searchTerm = '';
+    }
+    ok() {
+        this.currentSearchTerm = this.searchTerm;
+        this.getData();
+    }
     private getData() {
-        this.dataService.getData(null)
+        this.dataService.getData(this.searchTerm)
             .subscribe(
                 data => {
                     let length = data === null ? 0 : data.length;
@@ -60,22 +68,25 @@ export class DataComponent {
             return 0;
     }
     saveInstance(chartInstance) {
-        console.log("DataComponent: loaded chart instance.");
         this.chart = chartInstance;
     }
     private loadChartValues() {
-        var i,
+        let i,
             values = [],
-            seriesName =  'All';
-        for (i = 0; i < this.data.length; i++) {
-            values.push([Date.parse(this.data[i].createdDateTime), parseFloat(this.data[i].value)]);
+            seriesName = this.searchTerm.length === 0 ? 'All' : this.searchTerm,
+            series = this.chart.series[0];
+        series.setData([]);
+        series.update({name: seriesName});
+        if (this.data !== null) {
+            for (i = 0; i < this.data.length; i++) {
+                values.push([Date.parse(this.data[i].createdDateTime), parseFloat(this.data[i].value)]);
+            }
+            values.sort(DataComponent.compare);
+
+            for (i = 0; i < this.data.length; i++) {
+                series.addPoint(values[i]);
+            }
         }
-        values.sort(DataComponent.compare);
-        let series = this.chart.series[0];
-        for (i = 0; i < this.data.length; i++) {
-            series.addPoint(values[i]);
-        }
-        series.name = seriesName;
         this.chart.zoomOut();
     };
 }
