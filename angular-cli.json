@@ -23,8 +23,8 @@
       "scripts": [
         "assets/scripts/jquery-3.1.0.min.js"
       ],
+      "environmentSource": "environments/environment.ts",
       "environments": {
-        "source": "environments/environment.ts",
         "dev": "environments/environment.ts",
         "prod": "environments/environment.prod.ts"
       }
