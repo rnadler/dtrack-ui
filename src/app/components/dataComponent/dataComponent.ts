@@ -43,6 +43,9 @@ export class DataComponent {
         this.currentSearchTerm = this.searchTerm;
         this.getData();
     }
+    onEnter() {
+        this.ok();
+    }
     private getData() {
         this.dataService.getData(this.searchTerm)
             .subscribe(
@@ -77,6 +80,7 @@ export class DataComponent {
             series = this.chart.series[0];
         series.setData([]);
         series.update({name: seriesName});
+        this.chartOptions.series[0].name = seriesName;
         if (this.data !== null) {
             for (i = 0; i < this.data.length; i++) {
                 values.push([Date.parse(this.data[i].createdDateTime), parseFloat(this.data[i].value)]);
