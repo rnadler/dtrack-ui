@@ -6,7 +6,7 @@
                 <div class="form-group">
                     <div class="input-group">
                         <input type="text" class="form-control" [(ngModel)]="searchTerm" placeholder="Search..."
-                               name="searchTerm" (keyup.enter)="onEnter()">
+                               name="searchTerm" (keyup.enter)="ok()">
                         <span class="input-group-btn">
                                 <button class="btn btn-default" type="button" (click)="clearSearchTerm()"
                                         [disabled]="searchTerm.length === 0" id="removeButton" name="removeButton">

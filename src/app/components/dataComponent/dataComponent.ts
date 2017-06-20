@@ -43,9 +43,6 @@ export class DataComponent {
         this.currentSearchTerm = this.searchTerm;
         this.getData();
     }
-    onEnter() {
-        this.ok();
-    }
     private getData() {
         this.dataService.getData(this.searchTerm)
             .subscribe(
