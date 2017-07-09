@@ -1,6 +1,14 @@
 import { Component, ViewChild } from '@angular/core';
 import { DataService } from '../../services/dataService'
 import { LogAlert } from "../logAlert/logAlert";
+const Highcharts = require('highcharts');
+
+Highcharts.setOptions({
+    global : {
+        useUTC : false
+    }
+});
+
 
 @Component({
     selector: 'data',
