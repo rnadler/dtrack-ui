@@ -32,7 +32,16 @@ export class DataComponent {
                 zoomType: 'x'
             },
             title: { text: '' },
-            xAxis: { type: 'datetime' },
+            xAxis: {
+                type: 'datetime',
+                crosshair: { enabled: true }
+            },
+            tooltip: {
+                formatter: function () {
+                    let dt = new Date(this.x).toString(); // ToDo: Update date/time format.
+                    return `Type <b>${this.point.name}</b> at ${dt} is <b>${this.y}</b>`;
+                }
+            },
             series: [{ name: '', color: 'black', data: [] }]
         };
     }
@@ -88,7 +97,11 @@ export class DataComponent {
         this.chartOptions.series[0].name = seriesName;
         if (this.data !== null) {
             for (i = 0; i < this.data.length; i++) {
-                values.push([Date.parse(this.data[i].createdDateTime), parseFloat(this.data[i].value)]);
+                values.push({
+                    name: this.data[i].type,
+                    x: Date.parse(this.data[i].createdDateTime),
+                    y: parseFloat(this.data[i].value)
+                });
             }
             values.sort(DataComponent.compare);
 
