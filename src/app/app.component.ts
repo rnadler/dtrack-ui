@@ -8,7 +8,5 @@ import { LoginService } from './services/loginService';
 })
 export class AppComponent {
   title = 'Data Tracker';
-  constructor(
-      private loginService: LoginService) {
-  }
+  constructor(public loginService: LoginService) {}
 }
