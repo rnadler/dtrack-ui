@@ -28,7 +28,7 @@ import { ActivateIfNotSignedIn } from "./services/activateIfNotSignedIn";
 import { RegisterService } from './services/registerService'
 import { Logout } from "./components/login/logout";
 import { AddEntry } from "./components/addEntry/addEntry";
-import { STOMPService } from './services/stomp/stomp.service';
+import { STOMPService } from './services/stomp';
 import { UpdateComponent } from "./components/updateComponent/updateComponent";
 
 const APP_PROVIDERS = [
