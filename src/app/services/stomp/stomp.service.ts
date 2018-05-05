@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable, Subscription} from 'rxjs/Rx';
-import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Subject, Observable, Subscription, BehaviorSubject} from 'rxjs';
 
 import { StompConfig } from './';
 import * as Stomp from 'stompjs';

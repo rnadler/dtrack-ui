@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { MyHttpService } from "./myHttpService";
 import {Response, RequestOptions, Headers} from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class DataService {

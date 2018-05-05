@@ -3,7 +3,7 @@ import { Router, NavigationExtras } from '@angular/router';
 import { MyHttpService, getCookie } from "./myHttpService";
 import { Headers, RequestOptions } from "@angular/http";
 import { Subject } from "rxjs";
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class LoginService {

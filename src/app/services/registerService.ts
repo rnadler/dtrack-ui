@@ -2,7 +2,7 @@ import { Injectable} from "@angular/core";
 import { MyHttpService } from "./myHttpService";
 import { Headers, RequestOptions, Response} from "@angular/http";
 import { RegisterAccount } from '../model/registerAccount'
-import { Observable } from "rxjs/Observable";
+import { Observable } from "rxjs";
 
 @Injectable()
 export class RegisterService {
