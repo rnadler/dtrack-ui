@@ -1,17 +1,15 @@
 import {Injectable} from "@angular/core";
-import {RequestOptionsArgs, RequestOptions, Headers, Http, Response} from "@angular/http";
+import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
-const mergeAuthToken = (options: RequestOptionsArgs) => {
-    let newOptions = new RequestOptions({}).merge(options);
-    let newHeaders = new Headers(newOptions.headers);
-    if (options === undefined) {
-        newHeaders.append('Content-Type', 'application/json');
-    }
-    let token: string = (localStorage.getItem('token') === null) ? getCookie('XSRF-TOKEN') : localStorage.getItem('token');
-    newHeaders.append('X-XSRF-TOKEN', token);
-    newOptions.headers = newHeaders;
-    return newOptions;
+const mergeAuthToken = (contentType?: string): any => {
+    let token: string = (localStorage.getItem('token') === null) ? getCookie('XSRF-TOKEN') :
+        localStorage.getItem('token');
+    let type = 'application/' + (contentType !== undefined ? contentType : 'json');
+    return{headers: new HttpHeaders({
+            'X-XSRF-TOKEN' : token,
+            'Content-Type' : type
+        })};
 };
 
 export function getCookie (tokenName: string) {
@@ -25,15 +23,15 @@ export function getCookie (tokenName: string) {
 @Injectable()
 export class MyHttpService {
 
-    constructor(public http: Http) {
+    constructor(public http: HttpClient) {}
 
+    get (url: string, contentType?: string ): Observable <any> {
+        return this.http.get(url, mergeAuthToken(contentType));
     }
 
-    get (url: string, options?: RequestOptionsArgs ): Observable <Response> {
-        return this.http.get(url, mergeAuthToken(options));
-    }
-
-    post (url: string, body: string, options?: RequestOptionsArgs ): Observable <Response> {
-        return this.http.post(url, body, mergeAuthToken(options));
+    post (url: string, body: string, contentType?: string ): Observable <any> {
+        let options = mergeAuthToken(contentType);
+        options.responseType = 'text';
+        return this.http.post(url, body, options);
     }
 }

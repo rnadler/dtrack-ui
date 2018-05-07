@@ -1,7 +1,6 @@
 import { Injectable} from "@angular/core";
 import { Router, NavigationExtras } from '@angular/router';
 import { MyHttpService, getCookie } from "./myHttpService";
-import { Headers, RequestOptions } from "@angular/http";
 import { Subject } from "rxjs";
 import { Observable } from "rxjs";
 
@@ -16,12 +15,7 @@ export class LoginService {
 
         let request = 'username=' + username + '&password=' + password;
 
-        let headers = new Headers();
-        headers.append('Content-Type', 'application/x-www-form-urlencoded');
-
-        let options = new RequestOptions( {headers: headers} );
-
-        return this.myhttp.post('/api/login', request, options)
+        return this.myhttp.post('/api/login', request, 'x-www-form-urlencoded')
             .map((res: any) =>  {
                 let xsrf = getCookie('XSRF-TOKEN');
                 console.log('LoginService: username=' + username + ' xsrf-token=' + xsrf);
