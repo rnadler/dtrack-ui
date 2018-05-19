@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { RegisterAccount } from '../../model/registerAccount'
 import { RegisterService } from '../../services/registerService'
-import { Response } from "@angular/http";
+import { HttpErrorResponse } from "@angular/common/http";
 
 @Component({
     selector: 'register',
@@ -41,9 +41,9 @@ export class Register {
                 },
                 error => {
                     this.success = null;
-                    let response = <Response>error;
+                    let response = <HttpErrorResponse>error;
                     if (response.status === 400) {
-                        let message = response.json().message;
+                        let message = JSON.parse(response.error).message;
                         if (message === 'login already in use') {
                             this.errorUserExists = 'ERROR';
                         } else if (message === 'e-mail address already in use') {
