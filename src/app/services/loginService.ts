@@ -1,8 +1,8 @@
+import {map} from 'rxjs/operators';
 import { Injectable} from "@angular/core";
 import { Router, NavigationExtras } from '@angular/router';
 import { MyHttpService, getCookie } from "./myHttpService";
-import { Subject } from "rxjs";
-import { Observable } from "rxjs";
+import { Subject, Observable } from "rxjs";
 
 @Injectable()
 export class LoginService {
@@ -15,14 +15,14 @@ export class LoginService {
 
         let request = 'username=' + username + '&password=' + password;
 
-        return this.myhttp.post('/api/login', request, 'x-www-form-urlencoded')
-            .map((res: any) =>  {
+        return this.myhttp.post('/api/login', request, 'x-www-form-urlencoded').pipe(
+            map((res: any) =>  {
                 let xsrf = getCookie('XSRF-TOKEN');
                 console.log('LoginService: username=' + username + ' xsrf-token=' + xsrf);
                 localStorage.setItem('token', xsrf);
                 localStorage.setItem('user', username);
                 this._loginStatus.next('login');
-            });
+            }));
     }
     get loginStatus() {
         return this._loginStatus.asObservable();

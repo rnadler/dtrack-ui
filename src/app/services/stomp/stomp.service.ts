@@ -1,5 +1,5 @@
+import {timer as observableTimer,  Subject, Subscription, BehaviorSubject} from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Subject, Observable, Subscription, BehaviorSubject} from 'rxjs';
 
 import { StompConfig } from './';
 import * as Stomp from 'stompjs';
@@ -197,7 +197,7 @@ export class STOMPService {
 
         // Clear timer
         this.timer = null;
-    }
+    };
 
 
     // Handle errors from stomp.js
@@ -217,7 +217,7 @@ export class STOMPService {
 
             // Attempt reconnection
             console.log('Reconnecting in 5 seconds...');
-            this.timer = Observable.timer(5000).subscribe((t) =>
+            this.timer = observableTimer(5000).subscribe((t) =>
             {
                 this.configure();
                 this.try_connect();

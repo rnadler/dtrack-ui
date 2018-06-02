@@ -1,5 +1,5 @@
+import {timer as observableTimer } from 'rxjs';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
 
 @Injectable()
 export class ShowAlertService {
@@ -8,7 +8,7 @@ export class ShowAlertService {
     }
     public showAlertCallback(alert, callback) {
         alert.enabled = true;
-        Observable.timer(5000).subscribe((t) =>
+        observableTimer(5000).subscribe((t) =>
         {
             alert.enabled = false;
             alert.message = '';

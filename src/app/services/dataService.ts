@@ -1,3 +1,4 @@
+import {map} from 'rxjs/operators';
 import { Injectable } from "@angular/core";
 import { MyHttpService } from "./myHttpService";
 import { Observable } from "rxjs";
@@ -11,12 +12,12 @@ export class DataService {
         if (search && search.length > 0) {
             typeSearch = '/type/' + search;
         }
-        return this.myhttp.get('/api/v1/entries' + typeSearch)
-            .map((res) => res);
+        return this.myhttp.get('/api/v1/entries' + typeSearch).pipe(
+            map((res) => res));
     }
 
     addEntry(entry: any): Observable<any>  {
-        return this.myhttp.post('/api/v1/entries', JSON.stringify(entry))
-            .map((res) =>  res);
+        return this.myhttp.post('/api/v1/entries', JSON.stringify(entry)).pipe(
+            map((res) =>  res));
     }
 }
