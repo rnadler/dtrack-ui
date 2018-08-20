@@ -69,7 +69,7 @@ export function highchartsFactory() {
     AlertModule.forRoot(),
     ChartModule,
     PasswordStrengthBarModule,
-    NgbModule.forRoot(),
+    NgbModule,
     RouterModule.forRoot(ROUTES, { useHash: true })
   ],
   providers: [
