@@ -1,4 +1,3 @@
 <div>
-    <alert [type]="successAlert.type" [hidden]="!successAlert.enabled" [attr.id]="successAlert.id">{{successAlert.message}}</alert>
-    <alert [type]="failureAlert.type" [hidden]="!failureAlert.enabled" [attr.id]="failureAlert.id">{{failureAlert.message}}</alert>
+    <p-toast [style]="{marginTop: '80px'}" (onClose)="onToastClose()"></p-toast>
 </div>

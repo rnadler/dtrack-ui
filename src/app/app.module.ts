@@ -1,4 +1,5 @@
 import { BrowserModule } from '@angular/platform-browser';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
@@ -7,6 +8,8 @@ import { AlertModule } from 'ngx-bootstrap';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { ChartModule } from 'angular2-highcharts';
 import { HighchartsStatic } from 'angular2-highcharts/dist/HighchartsService';
+import { ToastModule } from "primeng/toast";
+import { MessageService } from "primeng/api";
 
 import { AppComponent } from './app.component';
 import { ROUTES } from './app.routes';
@@ -40,7 +43,8 @@ const APP_PROVIDERS = [
   ActivateIfSignedIn,
   ActivateIfNotSignedIn,
   RegisterService,
-  STOMPService
+  STOMPService,
+  MessageService
 ];
 
 declare var require: any;
@@ -64,13 +68,15 @@ export function highchartsFactory() {
   ],
   imports: [
     BrowserModule,
+    BrowserAnimationsModule,
     FormsModule,
     HttpClientModule,
     AlertModule.forRoot(),
     ChartModule,
     PasswordStrengthBarModule,
     NgbModule,
-    RouterModule.forRoot(ROUTES, { useHash: true })
+    RouterModule.forRoot(ROUTES, { useHash: true }),
+    ToastModule
   ],
   providers: [
     APP_PROVIDERS,

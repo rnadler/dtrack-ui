@@ -1,4 +1,4 @@
-import { Component, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { LogAlert } from '../logAlert/logAlert';
 import { Subscription } from "rxjs";
@@ -9,7 +9,7 @@ import { AppState } from '../../app.service'
     selector: 'login',
     templateUrl: './login.html'
 })
-export class Login {
+export class Login implements OnInit, OnDestroy {
     private static readonly USERNAME_PROP = 'username';
     private static readonly PASSWORD_PROP = 'password';
     private logoutAlert = {type: 'success', message: 'You have been logged out.'};
@@ -38,7 +38,7 @@ export class Login {
             );
     }
 
-    private ngOnInit() {
+    ngOnInit() {
         this.sub = this.route.queryParams.subscribe(params => {
             let param = params['param'];
             console.log("Login param: " + param);
@@ -73,7 +73,7 @@ export class Login {
     private getLoginProp = (prop) => {
         this.login[prop] = this.appState.get(prop);
     };
-    private ngOnDestroy() {
+    ngOnDestroy() {
         if (this.sub) {
             this.sub.unsubscribe();
         }

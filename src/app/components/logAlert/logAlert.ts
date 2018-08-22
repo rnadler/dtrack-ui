@@ -1,29 +1,41 @@
 import { Component } from '@angular/core';
-import { ShowAlertService } from "../../services/showAlertService";
+import { MessageService } from 'primeng/api';
 
 @Component({
     selector: 'log-alert',
     templateUrl: './logAlert.html'
 })
 export class LogAlert {
+    private _callBack: any;
 
     public successAlert = {enabled: false, type: 'success', message: '', id: 'successMessage'};
-    public failureAlert = {enabled: false, type: 'danger', message: '', id: 'failureMessage'};
+    public failureAlert = {enabled: false, type: 'error', message: '', id: 'failureMessage'};
 
-    constructor(private showAlertService: ShowAlertService) {
-
+    constructor(private messageService: MessageService) {
+        this._callBack = null;
     }
     showAlert(alert) {
         this.showAlertCallback(alert, null);
     }
     showAlertCallback(alert, callback) {
         let alertType = alert.type === 'success' ? this.successAlert : this.failureAlert;
-        alertType.message = alert.message;
-        this.showAlertService.showAlertCallback(alertType, callback);
+        this._callBack = callback;
+        this.showPopUpError(alertType.type, alert.message);
     }
     setPrefix(prefix) {
         this.successAlert.id = prefix + this.successAlert.id;
         this.failureAlert.id = prefix + this.failureAlert.id;
+    }
+    private showPopUpError(type: string, message: string) {
+        console.log('showPopUpError: ' + message);
+        this.messageService.add({severity: type, summary: 'Message', detail: message});
+    }
+    onToastClose() {
+        console.log('onToastClose: ' + this._callBack);
+        if (this._callBack) {
+            this._callBack();
+            this._callBack = null;
+        }
     }
 }
 
