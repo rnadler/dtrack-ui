@@ -6,35 +6,33 @@ import { MessageService } from 'primeng/api';
     templateUrl: './logAlert.html'
 })
 export class LogAlert {
-    private _callBack: any;
+    private idPrefix = '';
+    public toastAlert = { id: 'failureMessage'};
 
-    public successAlert = {enabled: false, type: 'success', message: '', id: 'successMessage'};
-    public failureAlert = {enabled: false, type: 'error', message: '', id: 'failureMessage'};
-
-    constructor(private messageService: MessageService) {
-        this._callBack = null;
-    }
+    constructor(private messageService: MessageService) {}
     showAlert(alert) {
         this.showAlertCallback(alert, null);
     }
     showAlertCallback(alert, callback) {
-        let alertType = alert.type === 'success' ? this.successAlert : this.failureAlert;
-        this._callBack = callback;
-        this.showPopUpError(alertType.type, alert.message);
+        let isSuccess = alert.type === 'success';
+        let alertType = isSuccess ? 'success' : 'error';
+        this.toastAlert.id = this.idPrefix + (isSuccess ? 'success' : 'failure') + 'Message';
+        this.showPopUpError(alertType, alert.message, callback);
     }
     setPrefix(prefix) {
-        this.successAlert.id = prefix + this.successAlert.id;
-        this.failureAlert.id = prefix + this.failureAlert.id;
+        this.idPrefix = prefix;
     }
-    private showPopUpError(type: string, message: string) {
-        console.log('showPopUpError: ' + message);
-        this.messageService.add({severity: type, summary: 'Message', detail: message});
+    private showPopUpError(type: string, message: string, callback) {
+        console.log('showPopUpError: ' + message + ' id=' + this.toastAlert.id);
+        this.messageService.add({severity: type, summary: 'Message',
+            detail: message,
+            data: { callback: callback, id: this.toastAlert.id}});
     }
-    onToastClose() {
-        console.log('onToastClose: ' + this._callBack);
-        if (this._callBack) {
-            this._callBack();
-            this._callBack = null;
+    onToastClose(message) {
+        let callback = message.data.callback;
+        console.log('onToastClose: ' + message.detail + ' id=' + message.data.id);
+        if (callback) {
+            callback();
         }
     }
 }
