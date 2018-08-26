@@ -1,3 +1,6 @@
 <div>
-    <p-toast [style]="{marginTop: '80px'}" (onClose)="onToastClose($event.message)" [attr.id]="toastAlert.id"></p-toast>
+    <p-toast [style]="{marginTop: '80px'}" (onClose)="onToastClose($event.message)"
+             [attr.id]="toastAlert.id"
+             [key]="toastAlert.id">
+    </p-toast>
 </div>

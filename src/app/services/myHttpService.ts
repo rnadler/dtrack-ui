@@ -3,8 +3,8 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Observable} from "rxjs";
 
 const mergeAuthToken = (contentType?: string): any => {
-    let token: string = (localStorage.getItem('token') === null) ? getCookie('XSRF-TOKEN') :
-        localStorage.getItem('token');
+    let lsToken = localStorage.getItem('token');
+    let token: string = (lsToken === null) ? getCookie('XSRF-TOKEN') : lsToken;
     let type = 'application/' + (contentType !== undefined ? contentType : 'json');
     return{headers: new HttpHeaders({
             'X-XSRF-TOKEN' : token,
