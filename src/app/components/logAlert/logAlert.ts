@@ -7,7 +7,7 @@ import { MessageService } from 'primeng/api';
 })
 export class LogAlert {
     private idPrefix = '';
-    public toastAlert = { id: 'successMessage'};
+    public toastAlert = { id: 'Message'};
 
     constructor(private messageService: MessageService, private changeDetectorRef: ChangeDetectorRef) {}
     showAlert(alert) {
