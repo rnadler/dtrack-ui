@@ -8,7 +8,7 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a class="navbar-brand" [routerLink]=" ['/'] "><span>{{title}}</span></a>
+        <a class="navbar-brand" [routerLink]=" ['/'] "><span id="title">{{title}}</span></a>
       </div>
       <div *ngIf="loginService.isSignedIn()">
         <div class="collapse navbar-collapse" id="navbar-ex-collapse">

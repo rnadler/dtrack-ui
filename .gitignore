@@ -26,10 +26,7 @@ target
 npm-debug.log
 testem.log
 /typings
-
-# e2e
-/e2e/*.js
-/e2e/*.map
+out-tsc
 
 #System Files
 .DS_Store
